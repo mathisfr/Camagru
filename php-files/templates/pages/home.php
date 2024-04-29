@@ -6,7 +6,7 @@
     <div id="home-popup">
         <div id="home-login">
             <h1>Connexion</h1>
-            <form action="processing/login.php" method="post">
+            <form action="router.php?page=login" method="post">
                 <input type="text" name="username-login" id="username-login" placeholder="Nom d'utilisateur">
                 <input type="password" name="password-login" id="password-login" placeholder="Mot de passe">
                 <input type="submit" value="Se connecter">
@@ -14,7 +14,7 @@
         </div>
         <div id="home-register">
             <h1>Créer un compte</h1>
-            <form action="" method="post">
+            <form action="router.php?page=register" method="post">
                 <input type="text" name="username-register" id="username-register" placeholder="Nom d'utilisateur">
                 <input type="email" name="email-register" id="email-register" placeholder="Adresse email">
                 <input type="password" name="password-register" id="password-register" placeholder="Mot de passe">
@@ -31,5 +31,5 @@
 <script type="text/javascript" src="../../js/app.js"></script>
 <?
     $content = ob_get_clean();
-    require (__DIR__.'/../layout.php');
+    require_once(__DIR__.'/../layout.php');
 ?>

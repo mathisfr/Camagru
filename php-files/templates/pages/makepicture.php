@@ -1,16 +1,21 @@
 <?php
-    if (!isset($_SESSION["loggedUser"])){
-        header("Location: router.php?page=home");
-        exit();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    require_once(__DIR__."/../../src/tools/User.php");
+    require_once(__DIR__."/../../src/tools/Utils.php");
+    if (!User::isLogged()){
+        redirect("home");
     }
     $title = "Camagru - Make Picture";
     ob_start(); 
 ?>
 <div>
-    <p>Welcome <?php echo $_SESSION["loggedUser"]["username"]; ?></p>
+    <p>Welcome <?= User::getUsername() ?></p>
     <p>Make picture</p>
 </div>
 <?
     $content = ob_get_clean();
-    require (__DIR__.'/../layout.php');
+    require_once(__DIR__.'/../layout.php');
 ?>
