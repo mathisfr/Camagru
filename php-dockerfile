@@ -3,4 +3,4 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     libpng-dev
-RUN docker-php-ext-install pdo_mysql zip gd
+RUN docker-php-ext-install pdo pdo_mysql zip gd
