@@ -9,6 +9,7 @@ if (document.readyState === "loading") {
 
 function DOMLoaded() {
     home();
+    header();
 }
 
 /**
@@ -34,3 +35,23 @@ function switchButton(){
     });
 }
 
+/**
+ * HEADER.PHP
+ */
+function header(){
+    hamburgerMenu();
+}
+
+function hamburgerMenu(){
+    
+    var hamburger = document.getElementById("nav-hamburger");
+    var menu = document.getElementById("nav-menu");
+
+    hamburger.addEventListener("click", function(){
+        if(menu.style.display === "none"){
+            menu.style.display = "block";
+        }else{
+            menu.style.display = "none";
+        }
+    });
+}
