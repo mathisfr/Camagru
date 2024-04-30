@@ -1,11 +1,11 @@
 <? 
-    $title = "Camagru - Login";
     ob_start(); 
+    $title = "Camagru - 404";
 ?>
-<div>
+<main>
     <h1>404 - Page not found</h1>
     <p>Sorry, the page you are looking for does not exist.</p>
-</div>
+</main>
 <?
     $content = ob_get_clean();
     require (__DIR__.'/../layout.php');

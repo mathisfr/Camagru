@@ -12,5 +12,6 @@ class Register {
             ":email" => $email,
             ":pass" => $password,
         ]);
+        $request->closeCursor();
     }
 }

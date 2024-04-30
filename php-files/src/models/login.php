@@ -17,6 +17,7 @@
                 return false;
             }
             $email = $data["email"];
+            $request->closeCursor();
             return true;
         }
     }

@@ -1,6 +1,8 @@
 @import url("global.css");
 
 header{
+    position: sticky;
+    top: 0px;
     display: flex;
     flex-direction: column;
     background-color: var(--black);
@@ -31,6 +33,10 @@ header a{
     color: white;
 }
 
+#nav-menu{
+    display: none;
+}
+
 header nav{
     margin-top: 10px;
 }
@@ -44,7 +50,10 @@ header a:hover{
 }
 
 .nav-separator{
-    display: none;
+    display: block;
+    background-color: white;
+    height: 1px;
+    width: 50%;;
 }
 
 #nav-hamburger{
@@ -62,7 +71,9 @@ header a:hover{
     #nav-hamburger{
         display: none;
     }
-
+    #nav-menu{
+        display: block;
+    }
     header ul{
         padding: 0;
         display: flex;

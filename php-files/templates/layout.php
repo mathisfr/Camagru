@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="../../styles/home.css">
     <link rel="stylesheet" href="../../styles/header.css">
     <link rel="stylesheet" href="../../styles/icons.css">
+    <link rel="stylesheet" href="../../styles/showpictures.css">
+    <link rel="stylesheet" href="../../styles/profile.css">
 </head>
 <body>
-    <?php include 'header.php';?>
+    <?php require_once('header.php');?>
     <?= $content ?>
 </body>
 </html>

@@ -1,7 +1,9 @@
 <?php
 session_start();
+
 require_once("./src/controllers/login.php");
 require_once("./src/controllers/register.php");
+require_once("./src/controllers/update.php");
 require_once("./src/tools/Utils.php");
 if (isset($_GET["page"])){
     if ($_GET["page"] == "home"){
@@ -9,24 +11,46 @@ if (isset($_GET["page"])){
     }elseif ($_GET["page"] == "showpictures"){
         require("./templates/pages/showpictures.php");
     }elseif ($_GET["page"] == "makepicture"){
+        if (!User::isLogged()){
+            redirect("404");
+        }
         require("./templates/pages/makepicture.php");
     }elseif ($_GET["page"] == "login"){
+        if (User::isLogged()){
+            redirect("404");
+        }
         if(isset($_POST["username-login"]) && isset($_POST["password-login"])){
             login($_POST["username-login"], $_POST["password-login"]);
         }else{
             redirect("home");
         }
     }elseif ($_GET["page"] == "register"){
+        if (User::isLogged()){
+            redirect("404");
+        }
         if(isset($_POST["username-register"]) && isset($_POST["password-register"]) && isset($_POST["password-confirm"]) && isset($_POST["email-register"])){
             register($_POST["username-register"], $_POST["email-register"], $_POST["password-register"], $_POST["password-confirm"]);
         }else{
-            redirect("home");
+            redirect("404");
+        }
+    }elseif ($_GET["page"] == "update"){
+        if (!User::isLogged()){
+            redirect("404");
+        }
+        if(isset($_POST["username"]) || isset($_POST["email"]) || isset($_POST["password"]) || isset($_POST["password-confirm"])){
+            update($_POST["username"], $_POST["email"], $_POST["password"], $_POST["password-confirm"]);
         }
     }
     elseif ($_GET["page"] == "logout"){
         session_destroy();
         redirect("home");
-    }else{
+    }elseif ($_GET["page"] == "profile"){
+        if (!User::isLogged()){
+            redirect("404");
+        }
+        require("./templates/pages/profile.php");
+    }
+    else{
         require("./templates/pages/404.php");
     }
 }else{

@@ -1,0 +1,38 @@
+#showpictures{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+#pictures{
+    display: flex;
+    flex-direction: column;  
+    box-sizing: border-box; 
+}
+
+.picture{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 600px){
+    #pictures{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        height: 100vh;
+    }
+
+    .picture{
+        width: 350px;
+        margin: 10px;
+        flex: 1 0 calc(25%);
+    }
+}

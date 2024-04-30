@@ -25,14 +25,16 @@ function switchButton(){
     var divLogin = document.getElementById("home-login");
     var divRegister = document.getElementById("home-register");
 
-    buttonLogin.addEventListener("click", function(){
-        divLogin.style.display = "block";
-        divRegister.style.display = "none";
-    });
-    buttonRegister.addEventListener("click", function(){
-        divLogin.style.display = "none";
-        divRegister.style.display = "block";
-    });
+    if (buttonLogin !== null) {
+        buttonLogin.addEventListener("click", function(){
+            divLogin.style.display = "block";
+            divRegister.style.display = "none";
+        });
+        buttonRegister.addEventListener("click", function(){
+            divLogin.style.display = "none";
+            divRegister.style.display = "block";
+        });
+    }
 }
 
 /**
@@ -47,11 +49,13 @@ function hamburgerMenu(){
     var hamburger = document.getElementById("nav-hamburger");
     var menu = document.getElementById("nav-menu");
 
-    hamburger.addEventListener("click", function(){
-        if(menu.style.display === "none"){
-            menu.style.display = "block";
-        }else{
-            menu.style.display = "none";
-        }
-    });
+    if (hamburger !== null){
+        hamburger.addEventListener("click", function(){
+            if(menu.style.display === "block"){
+                menu.style.display = "none";
+            }else{
+                menu.style.display = "block";
+            }
+        });
+    }
 }

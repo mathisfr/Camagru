@@ -1,8 +1,4 @@
 <?php 
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
     require_once(__DIR__ ."/../src/tools/User.php");
     $isUserLogged = User::isLogged();
 ?>
@@ -15,13 +11,16 @@
                 <div class="nav-separator"></div>
             <?php endif; ?>
             <li><a href="router.php?page=showpictures">Show Pictures</a></li>
-            <div class="nav-separator"></div>
-            <li><a href="router.php?page=makepicture">Make Pictures</a></li>
             <?php if ($isUserLogged): ?>
+                <div class="nav-separator"></div>
+                <li><a href="router.php?page=makepicture">Make Pictures</a></li>
+                <div class="nav-separator"></div>
+                <li><a href="router.php?page=profile">Profile</a></li>
                 <div class="nav-separator"></div>
                 <li><a href="router.php?page=logout">Logout</a></li>
             <?php endif; ?>
         </ul>
     </nav>
     <li id="nav-hamburger"><i class="gg-menu"></i></li>
+    <script type="text/javascript" src="../../js/app.js"></script>
 </header>

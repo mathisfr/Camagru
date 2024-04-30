@@ -1,8 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 class User{
     public static function getUsername(): string{
         if (isset($_SESSION["username"])){
