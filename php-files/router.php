@@ -1,11 +1,24 @@
 <?php
 session_start();
 
-require_once("./src/controllers/login.php");
-require_once("./src/controllers/register.php");
-require_once("./src/controllers/update.php");
+require_once("./src/controllers/userLogin.php");
+require_once("./src/controllers/userRegister.php");
+require_once("./src/controllers/userUpdate.php");
 require_once("./src/tools/Utils.php");
-if (isset($_GET["page"])){
+require_once("./src/tools/Router.php");
+
+$router = new Router();
+
+$router->addRoute("home", "./templates/pages/home.php",null, null);
+$router->addRoute("showpictures", "./templates/pages/showpictures.php", null, null);
+$router->addRoute("makepicture", "./templates/pages/makepicture.php", null, null);
+$router->addRoute("profile", "./templates/pages/profile.php", null, null);
+
+/*$router->addRoute("userLogin", null, null);
+$router->addRoute("userRegister", null, null);
+$router->addRoute("userUpdate", null, null);*/
+$router->run();
+/*if (isset($_GET["page"])){
     if ($_GET["page"] == "home"){
         require("./templates/pages/home.php");
     }elseif ($_GET["page"] == "showpictures"){
@@ -55,4 +68,4 @@ if (isset($_GET["page"])){
     }
 }else{
     require("./templates/pages/home.php");
-}
+}*/

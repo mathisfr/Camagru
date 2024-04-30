@@ -6,7 +6,7 @@
 <main id="profile">
     <article id="profile-popup">
         <h1>Profile</h1>
-        <form action="router.php?page=update" method="post">
+        <form action="router.php?page=userUpdate" method="post">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" value="<?= User::getUsername() ?>">
             <label for="email">Email</label>

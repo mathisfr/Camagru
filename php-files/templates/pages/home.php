@@ -6,7 +6,7 @@
     <article id="home-popup">
         <section id="home-login">
             <h1>Connexion</h1>
-            <form action="router.php?page=login" method="post">
+            <form action="router.php?page=userLogin" method="post">
                 <input type="text" name="username-login" id="username-login" placeholder="Nom d'utilisateur">
                 <input type="password" name="password-login" id="password-login" placeholder="Mot de passe">
                 <input class="submit-button" type="submit" value="Se connecter">
@@ -14,7 +14,7 @@
         </section>
         <section id="home-register">
             <h1>Créer un compte</h1>
-            <form action="router.php?page=register" method="post">
+            <form action="router.php?page=userRegister" method="post">
                 <input type="text" name="username-register" id="username-register" placeholder="Nom d'utilisateur">
                 <input type="email" name="email-register" id="email-register" placeholder="Adresse email">
                 <input type="password" name="password-register" id="password-register" placeholder="Mot de passe">
