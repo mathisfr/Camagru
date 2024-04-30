@@ -3,8 +3,11 @@
     
     $title = "Camagru - Make Picture"; 
 ?>
-<main>
-    <h1>Make picture</h1>
+<main id="makepicture">
+    <video id="makepicture-video"></video>
+    <button id="makepicture-button">
+        <i class="gg-live-photo"></i>
+    </button>
 </main>
 <?
     $content = ob_get_clean();

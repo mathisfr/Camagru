@@ -1,9 +1,11 @@
+@import url("global.css");
 #showpictures{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: auto;
     box-sizing: border-box;
     padding: 20px;
+    background-color: white;
 }
 
 #pictures{
@@ -16,6 +18,7 @@
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
+    box-shadow: 0 0 50px var(--grey-shadow);
 }
 
 @media only screen and (min-width: 600px){
@@ -27,11 +30,11 @@
         box-sizing: border-box;
         justify-content: flex-start;
         box-sizing: border-box;
-        height: 100vh;
+        height: 100%;
     }
 
     .picture{
-        width: 350px;
+        min-width: 350px;
         margin: 10px;
         flex: 1 0 calc(25%);
     }

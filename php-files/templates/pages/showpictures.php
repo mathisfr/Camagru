@@ -4,11 +4,11 @@
 ?>
 <main id="showpictures">
     <article id="pictures">
-        <img class="picture" src="https://placehold.co/600x400/png" alt="picture">
-        <img class="picture" src="https://placehold.co/600x400/png" alt="picture">
-        <img class="picture" src="https://placehold.co/600x400/png" alt="picture">
-        <img class="picture" src="https://placehold.co/600x400/png" alt="picture">
-        <img class="picture" src="https://placehold.co/600x400/png" alt="picture">
+        <img class="picture" src="https://picsum.photos/400/600" alt="picture">
+        <img class="picture" src="https://placebear.com/400/600" alt="picture">
+        <img class="picture" src="https://placebeard.it/400/600" alt="picture">
+        <img class="picture" src="https://loremflickr.com/400/600" alt="picture">
+        <img class="picture" src="https://dummyimage.com/400x600/fff/aaa" alt="picture">
     </article>
 </main>
 <?
