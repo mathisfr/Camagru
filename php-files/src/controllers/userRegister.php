@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once(__DIR__."/../models/register.php");
 require_once(__DIR__."/../tools/User.php");
-function register($username, $email, $password, $password2){
+function userRegister($username, $email, $password, $password2){
     if (empty($username) || empty($password) || empty($password2) || empty($email)){
         redirect("home");
     }

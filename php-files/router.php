@@ -4,6 +4,7 @@ session_start();
 require_once("./src/controllers/userLogin.php");
 require_once("./src/controllers/userRegister.php");
 require_once("./src/controllers/userUpdate.php");
+require_once("./src/controllers/userLogout.php");
 require_once("./src/tools/Utils.php");
 require_once("./src/tools/Router.php");
 
@@ -13,7 +14,24 @@ $router->addRoute("home", "./templates/pages/home.php",null, null);
 $router->addRoute("showpictures", "./templates/pages/showpictures.php", null, null);
 $router->addRoute("makepicture", "./templates/pages/makepicture.php", null, null);
 $router->addRoute("profile", "./templates/pages/profile.php", null, null);
+$router->addRoute("logout", "userLogout", null, null);
 
+$router->addRoute("userLogin", 'userLogin',[
+    'username-login',
+    'password-login',
+], null);
+$router->addRoute("userRegister", 'userRegister',[
+    'username-register',
+    'email-register',
+    'password-register',
+    'password-confirm',
+], null);
+$router->addRoute("userUpdate", 'userUpdate',[
+    'username',
+    'email',
+    'password',
+    'password-confirm',
+], null);
 /*$router->addRoute("userLogin", null, null);
 $router->addRoute("userRegister", null, null);
 $router->addRoute("userUpdate", null, null);*/

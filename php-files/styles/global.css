@@ -34,4 +34,13 @@ body{
 .submit-button:hover {
     cursor: pointer;
     background-color: var(--grey-shadow);
-  }
+}
+
+#debug{
+    width: 100%;
+    height: auto;
+    background-color: #9c9bfc;
+    color: white;
+    padding: 15px;
+    box-sizing: border-box;
+}

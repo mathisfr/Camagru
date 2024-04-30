@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="../../styles/profile.css">
 </head>
 <body>
+    <?php if(isset($_SESSION["debug"])): ?>
+    <div id="debug">
+        <h2>Debug</h2>
+        <p><?= $_SESSION["debug"] ?></p>
+    </div>
+    <?php endif; ?>
     <?php require_once('header.php');?>
     <?= $content ?>
 </body>

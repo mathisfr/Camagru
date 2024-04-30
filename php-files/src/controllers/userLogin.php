@@ -6,11 +6,12 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once(__DIR__."/../models/login.php");
 require_once(__DIR__."/../tools/Utils.php");
 require_once(__DIR__."/../tools/User.php");
-function login(string $username, string $password){  
+function userLogin(string $username, string $password){  
     if (empty($username) || empty($password)){
         redirect("home");
     }
     else{
+        $_SESSION["debug"] = $username;
         $tempEmail = '';
         $tempNull = '';
         User::secureUserInfo($username, $tempNull, $tempNull);
