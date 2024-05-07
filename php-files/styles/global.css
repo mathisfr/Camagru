@@ -6,6 +6,10 @@
     --black: #2c2c2c;
     --grey: rgb(230, 230, 230);
     --grey-shadow: rgb(211, 211, 211);
+    --error:#FF6B6B;
+    --info:#4ECDC4;
+    --error-text:#FFFFFF;
+    --info-text:#2c2c2c;
   }
 
 html, body{
