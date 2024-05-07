@@ -27,10 +27,10 @@ class Update extends DatabaseConnection {
         $request->closeCursor();
     }
 
-    public function delete(int $id){
-        $request = $this->getConnection()->prepare("DELETE FROM `users` WHERE id=:id");
+    public function delete(string $username){
+        $request = $this->getConnection()->prepare("DELETE FROM `users` WHERE username=:username");
         $request->execute([
-            ":id" =>  $id,
+            ":username" =>  $username,
         ]);
         $request->closeCursor();
     }

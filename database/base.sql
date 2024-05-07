@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: Apr 29, 2024 at 06:15 PM
+-- Generation Time: May 07, 2024 at 05:38 AM
 -- Server version: 10.9.8-MariaDB-1:10.9.8+maria~ubu2204
 -- PHP Version: 8.2.8
 
@@ -26,6 +26,20 @@ USE `camagru`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `keyMail`
+--
+
+DROP TABLE IF EXISTS `keyMail`;
+CREATE TABLE IF NOT EXISTS `keyMail` (
+  `user_id` int(11) NOT NULL,
+  `user_key` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -35,15 +49,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pass` text NOT NULL,
+  `emailVerified` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `email`, `pass`) VALUES
-(1, 'test', 'test@gmail.com', '$2y$10$Mr2cb1nBnAHcWM2Evscm7eOwd9.t.j8hpWm8VOHdXrp489M3oEyCO');
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -33,6 +33,7 @@ $router->addRoute("userUpdate", 'userUpdate', 'POST',[
     'email',
     'password',
     'password-confirm',
+    'delete',
 ], null);
 $router->addRoute("userConfirmMail", 'userConfirmMail', 'GET',[
     'key',

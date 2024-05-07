@@ -16,6 +16,7 @@
             <label for="password-confirm">Confirm password</label>
             <input type="password" name="password-confirm" id="password-confirm" value="">
             <input class="submit-button" type="submit" value="Update">
+            <input class="submit-button" name="delete" type="submit" value="Delete Account">
         </form>
     </article>
 </main>

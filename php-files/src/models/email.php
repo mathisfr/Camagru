@@ -13,6 +13,10 @@
                 $request = $this->getConnection()->prepare('UPDATE `users` SET `emailVerified`=TRUE WHERE `id`=:userId');
                 $request->bindParam(':userId', $userId, PDO::PARAM_INT);
                 $request->execute();
+                $request->closeCursor();
+                $request = $this->getConnection()->prepare('DELETE FROM `keyMail` WHERE `user_id`=:userId');
+                $request->bindParam(':userId', $userId, PDO::PARAM_INT);
+                $request->execute();
             }else{
                 $request->closeCursor();
                 return false;

@@ -20,6 +20,7 @@ header ul{
     flex-direction: column;
     text-align: center;
     align-items: center;
+    margin-bottom: 0;
 }
 
 header li{
@@ -41,10 +42,6 @@ header nav{
     margin-top: 10px;
 }
 
-header ul{
-    margin-bottom: 0;
-}
-
 header a:hover{
     color: var(--yellow);
 }
@@ -52,8 +49,8 @@ header a:hover{
 .nav-separator{
     display: block;
     background-color: white;
-    height: 1px;
-    width: 50%;;
+    height: 2px;
+    width: 100px;
 }
 
 #nav-hamburger{
@@ -82,18 +79,20 @@ header a:hover{
         justify-content: space-between;
         margin-left: 25vw;
         margin-right: 25vw;
+        align-content: center;
+        margin-bottom: 10px;
     }
 
     header li{
         list-style: none;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         margin-top: 5px;
     }
 
     .nav-separator{
         display: block;
         background-color: white;
-        width: 1px;
-        height: 20px;
+        width: 2px;
+        height: 10px;
     }
 }

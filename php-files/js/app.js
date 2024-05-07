@@ -1,6 +1,7 @@
 import Home from './Home.js';
 import Header from './Header.js';
 import Makepicture from './Makepicture.js';
+import Notification from './Notification.js';
 
 /**
  * APP
@@ -24,4 +25,7 @@ function DOMLoaded() {
 
     let makepicture = new Makepicture();
     makepicture.takePicture();
+
+    let notification = new Notification();
+    notification.closeNotification();
 }

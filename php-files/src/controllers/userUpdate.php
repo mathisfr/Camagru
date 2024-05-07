@@ -6,8 +6,13 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once(__DIR__."/../models/update.php");
 require_once(__DIR__."/../tools/Notification.php");
 require_once(__DIR__."/../tools/User.php");
-function userUpdate($username, $email, $password, $password2){
+function userUpdate($username, $email, $password, $password2, $delete){
     $update = new Update();
+    if ($delete != null){
+        $update->delete(User::getUsername());
+        Notification::send("Votre compte a ete supprime", NOTIFICATION_TYPE[1]);
+        redirect("logout");
+    }
     $tempPassword = $password;
     if (!User::secureUserInfo($username, $email, $password)){
         Notification::send("L'email n'est pas correct", NOTIFICATION_TYPE[0]);

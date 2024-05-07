@@ -25,9 +25,9 @@ class Router{
                         $sendParams = [];
                         foreach($params as $param){
                             if ($type == "POST"){
-                                $sendParams[] = $_POST[$param];
+                                $sendParams[] = $_POST[$param] ?? null;
                             }else{
-                                $sendParams[] = $_GET[$param];
+                                $sendParams[] = $_GET[$param] ?? null;
                             }
                         }
                         $this->routes[$_GET["page"]]["uri"](...$sendParams);

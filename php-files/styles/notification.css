@@ -1,21 +1,40 @@
-.notification{
+.notification {
     position: fixed;
     bottom: 0;
     height: 35px;
     left: 0;
     right: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px;
 }
 
-.notification-error{
+.notification p {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.notification-error {
     background-color: var(--error);
     color: var(--error-text);
 }
 
-.notification-info{
+.notification-info {
     background-color: var(--info);
     color: var(--info-text);
+}
+
+.notification-close {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    order: 2;
+    margin-left: 15px;
 }
