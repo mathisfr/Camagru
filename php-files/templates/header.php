@@ -22,5 +22,4 @@
         </ul>
     </nav>
     <li id="nav-hamburger"><i class="gg-menu"></i></li>
-    <script type="text/javascript" src="../../js/app.js"></script>
 </header>
