@@ -5,7 +5,7 @@ class Register {
     function __construct(){
         $this->db = new DatabaseConnection();
     }
-    public function addUser(string $username, string $email, string $password){
+    public function addUser(string $username, string $email, string $password): int{
         $request = $this->db->getConnection()->prepare("INSERT INTO `users`(`username`, `email`, `pass`) VALUES (:username,:email,:pass)");
         $request->execute([
             ":username" =>  $username,
@@ -13,5 +13,6 @@ class Register {
             ":pass" => $password,
         ]);
         $request->closeCursor();
+        return $this->db->getConnection()->lastInsertId();
     }
 }

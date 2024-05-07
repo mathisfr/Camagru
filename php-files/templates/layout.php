@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="../../styles/showpictures.css">
     <link rel="stylesheet" href="../../styles/profile.css">
     <link rel="stylesheet" href="../../styles/makepicture.css">
+    <link rel="stylesheet" href="../../styles/notification.css">
 </head>
 <body>
-
     <?php require_once('header.php');?>
     <?= $content ?>
+    <?php 
+        Notification::get();
+    ?>
 </body>
 </html>

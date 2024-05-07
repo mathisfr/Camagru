@@ -6,11 +6,12 @@ require_once("./src/tools/Utils.php");
 class Router{
     private array $routes = [];
 
-    public function addRoute(string $name, $uri, ?array $params, ?array $middleware): void{
+    public function addRoute(string $name, $uri, ?string $type, ?array $params, ?array $middleware): void{
         $this->routes[$name] = [
             "uri"=> $uri,
             "params" => $params,
-            "middleware" => $middleware
+            "middleware" => $middleware,
+            "type"=>$type,
        ];
     }
 
@@ -19,10 +20,15 @@ class Router{
             if (array_key_exists($_GET["page"], $this->routes)){
                 if(is_callable($this->routes[$_GET["page"]]["uri"])){
                     $params = $this->routes[$_GET["page"]]["params"];
+                    $type = $this->routes[$_GET["page"]]["type"];
                     if (is_array($params)){
                         $sendParams = [];
                         foreach($params as $param){
-                            $sendParams[] = $_POST[$param];
+                            if ($type == "POST"){
+                                $sendParams[] = $_POST[$param];
+                            }else{
+                                $sendParams[] = $_GET[$param];
+                            }
                         }
                         $this->routes[$_GET["page"]]["uri"](...$sendParams);
                     }else{
@@ -32,6 +38,7 @@ class Router{
                     require_once($this->routes[$_GET["page"]]["uri"]);
                 }
             }else{
+                echo $_GET["page"];
                 require_once(__DIR__ ."/../../templates/pages/404.php");
             }
         }

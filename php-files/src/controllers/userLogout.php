@@ -4,4 +4,3 @@ function userLogout(){
     session_destroy();
     redirect("home");
 }
-?>

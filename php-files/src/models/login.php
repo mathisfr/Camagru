@@ -16,6 +16,9 @@
             if (!password_verify($password, $data["pass"])){
                 return false;
             }
+            if ($data["emailVerified"] == 0){
+                return false;
+            }
             $email = $data["email"];
             $request->closeCursor();
             return true;
