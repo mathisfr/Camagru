@@ -5,7 +5,7 @@
         function __construct(){
             $this->db = new DatabaseConnection();
         }
-        public function identify(string $username, string $password, string &$email): bool{
+        public function identify(string $username, string $password, string &$email, int &$userid): bool{
             $request = $this->db->getConnection()->prepare('SELECT * FROM users WHERE username=:username');
             $request->bindParam(':username', $username, PDO::PARAM_STR);
             $request->execute();

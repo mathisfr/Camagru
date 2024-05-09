@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: May 07, 2024 at 05:38 AM
+-- Generation Time: May 09, 2024 at 02:23 AM
 -- Server version: 10.9.8-MariaDB-1:10.9.8+maria~ubu2204
 -- PHP Version: 8.2.8
 
@@ -35,7 +35,28 @@ CREATE TABLE IF NOT EXISTS `keyMail` (
   `user_key` varchar(255) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pictures`
+--
+
+DROP TABLE IF EXISTS `pictures`;
+CREATE TABLE IF NOT EXISTS `pictures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pictures`
+--
+
+INSERT INTO `pictures` (`id`, `user_id`, `path`) VALUES
+(4, 0, 'uploads/image_1715221301_aaa.png');
 
 -- --------------------------------------------------------
 
@@ -51,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `pass` text NOT NULL,
   `emailVerified` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

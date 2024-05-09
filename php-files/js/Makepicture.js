@@ -21,19 +21,28 @@ export default class Makepicture{
             this.buttonTakePicture.addEventListener("click", ()=>{
                 const extCanvas = document.createElement("canvas");
                 const context = extCanvas.getContext('2d');
-                console.log("click");
                 const widthClient = this.video.clientWidth;
                 const heightClient = this.video.clientHeight;
-                const width = this.video.videoWidth;
                 const height = this.video.videoHeight;
                 const aspectRatio = 9/16;
-                console.log(`${width}, ${height}`);
                 extCanvas.width = widthClient;
                 extCanvas.height = heightClient;
                 context.drawImage(this.video, widthClient * aspectRatio, 0, widthClient * aspectRatio, height, 0, 0, widthClient, heightClient);
                 const data = extCanvas.toDataURL('image/png');
-                window.open(data, '_blank');
+                this.sendImage(data);
+                //window.open(data, '_blank');
             });
         }
+    }
+    sendImage(dataImage){
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080/router.php?page=pictureUpload', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert(xhr.responseText);
+            }
+        };
+        xhr.send('image=' + dataImage);
     }
 }

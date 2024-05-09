@@ -37,6 +37,6 @@ function userUpdate($username, $email, $password, $password2, $delete){
         Notification::send("Le nom d'utilisateur a ete modifie", NOTIFICATION_TYPE[1]);
     }
     
-    User::setUserSession($username, $email, true);
+    User::setUserSession(null, $username, $email, true);
     redirect("profile");
 }

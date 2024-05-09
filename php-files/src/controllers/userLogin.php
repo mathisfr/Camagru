@@ -18,12 +18,13 @@ function userLogin(string $username, string $password){
         $tempNull = '';
         User::secureUserInfo($username, $tempNull, $tempNull);
         $login = new Login();
-        if (!$login->identify($username, $password, $tempEmail)){
+        $userid = 0;
+        if (!$login->identify($username, $password, $tempEmail, $userid)){
             Notification::send("Nom d'utilisateur ou mot de passe incorrect", NOTIFICATION_TYPE[0]);
             redirect("home");
         }
         Notification::send("Connexion reussi", NOTIFICATION_TYPE[1]);
-        User::setUserSession($username, $tempEmail, true);
+        User::setUserSession($userid, $username, $tempEmail, true);
         redirect("makepicture");
     }
 }
