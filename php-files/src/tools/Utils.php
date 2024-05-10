@@ -26,6 +26,12 @@ function saveImage($imageData, $quality): string{
     $filePathSave = __DIR__.'/../../uploads/image_' . $namefile;
     $publicPath = 'uploads/image_' . $namefile;
     $image = imagecreatefromstring($imageData);
-    imagejpeg($image, $filePathSave, $quality);
+    $imageResize = imagescale($image, 400, 600);
+    $imageDeco = imagecreatefrompng(__DIR__.'/../../uploads/decos/deco1.png');
+    $imageDecoResize = imagescale($imageDeco, 400, 600);
+    imagecopy($imageResize, $imageDecoResize, 0, 0, 0, 0, 400, 600);
+    imagejpeg($imageResize, $filePathSave, $quality);
+    imagedestroy($imageDeco);
+    imagedestroy($imageDecoResize);
     return $publicPath;
 }

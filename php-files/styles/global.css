@@ -1,7 +1,9 @@
 :root {
     --yellow: #F6D242;
     --yellow-shadow: #d8b838;
+    --yellow-transparent: #f6d2421d;
     --rose: #FF52E5;
+    --rose-transparent: #ff52e513;
     --white-shadow: #eee;
     --black: #2c2c2c;
     --grey: rgb(230, 230, 230);

@@ -10,7 +10,7 @@
                 <li><a href="router.php?page=home">Connexion</a></li>
                 <div class="nav-separator"></div>
             <?php endif; ?>
-            <li><a href="router.php?page=showpictures">Show Pictures</a></li>
+            <li><a href="showpictures">Show Pictures</a></li>
             <?php if ($isUserLogged): ?>
                 <div class="nav-separator"></div>
                 <li><a href="router.php?page=makepicture">Make Pictures</a></li>

@@ -12,6 +12,10 @@ header{
 header h1{
     text-align: center;
     margin-bottom: 0;
+    background: var(--black);
+    background: radial-gradient(circle farthest-side at left center, var(--yellow) 20%, var(--rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header ul{
