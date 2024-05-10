@@ -7,42 +7,49 @@ export default class Makepicture{
         this.video = document.getElementById('makepicture-video');
     }
     takePicture(){
-        if (this.video !== null){
-            navigator.mediaDevices.getUserMedia({video:true, audio:false})
-            .then((stream) => {
-                this.video.srcObject = stream;
-                this.video.play();
-            })
-            .catch((err) => {
-                console.error(`An error occurred: ${err}`);
-            });
-        }
+        if (this.video == null) return;
+        navigator.mediaDevices.getUserMedia({video:true, audio:false})
+        .then((stream) => {
+            this.video.srcObject = stream;
+            this.video.play();
+        })
+        .catch((err) => {
+            console.error(`An error occurred: ${err}`);
+        });
         if (this.buttonTakePicture != null || this.buttonTakePicture != undefined){
             this.buttonTakePicture.addEventListener("click", ()=>{
                 const extCanvas = document.createElement("canvas");
                 const context = extCanvas.getContext('2d');
                 const widthClient = this.video.clientWidth;
                 const heightClient = this.video.clientHeight;
+                const width = this.video.videoWidth;
                 const height = this.video.videoHeight;
-                const aspectRatio = 9/16;
                 extCanvas.width = widthClient;
                 extCanvas.height = heightClient;
-                context.drawImage(this.video, widthClient * aspectRatio, 0, widthClient * aspectRatio, height, 0, 0, widthClient, heightClient);
-                const data = extCanvas.toDataURL('image/png');
+                const offsetWidth = width/2 - widthClient/2;
+                context.drawImage(this.video, offsetWidth, 0, (width/2), height, 0, 0, widthClient, heightClient);
+                const data = extCanvas.toDataURL('image/jpeg');
                 this.sendImage(data);
-                //window.open(data, '_blank');
             });
         }
-    }
+    };
     sendImage(dataImage){
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:8080/router.php?page=pictureUpload', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
+        xhr.onreadystatechange = ()=> {
+            if (xhr.readyState != 4 ) return;
+            if (xhr.status == 200) {
+                this.video.pause();
                 alert(xhr.responseText);
+                if(window.confirm("Image uploaded successfully! Do you want to see the image?")){
+                    window.open(dataImage, '_blank');
+                }
+                this.video.play();
+            }else{
+                alert('Error');
             }
         };
         xhr.send('image=' + dataImage);
-    }
+    };
 }

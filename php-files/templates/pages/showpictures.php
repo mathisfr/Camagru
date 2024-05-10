@@ -6,7 +6,9 @@
     <article id="pictures">
         <?php
             foreach ($pictures as $picture) {
-                echo '<img class="picture" src="'.$picture['path'].'" alt="picture">';
+                if (file_exists($picture['path'])){
+                    echo '<img class="picture" src="'.$picture['path'].'" alt="picture">';
+                }
             }
         ?>
         <img class="picture" src="https://picsum.photos/400/600" alt="picture">

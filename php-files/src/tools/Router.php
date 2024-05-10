@@ -6,7 +6,7 @@ require_once("./src/tools/Utils.php");
 class Router{
     private array $routes = [];
 
-    public function addRoute(string $name, $uri, ?string $type, ?array $params, ?array $middleware): void{
+    public function addRoute(string $name, $uri, ?string $type, ?array $params, ?Callable $middleware): void{
         $this->routes[$name] = [
             "uri"=> $uri,
             "params" => $params,
@@ -14,7 +14,6 @@ class Router{
             "type"=>$type,
        ];
     }
-
     public function run(): void{
         if (isset($_GET["page"])){
             if (array_key_exists($_GET["page"], $this->routes)){
@@ -30,12 +29,18 @@ class Router{
                                 $sendParams[] = $_GET[$param] ?? null;
                             }
                         }
-                        $this->routes[$_GET["page"]]["uri"](...$sendParams);
+                        if ($this->executeMiddleware($this->routes[$_GET["page"]]["middleware"])){
+                            $this->routes[$_GET["page"]]["uri"](...$sendParams);
+                        }
                     }else{
-                        $this->routes[$_GET["page"]]["uri"]();
+                        if ($this->executeMiddleware($this->routes[$_GET["page"]]["middleware"])){
+                            $this->routes[$_GET["page"]]["uri"]();
+                        }
                     }
                 }else{
-                    require_once($this->routes[$_GET["page"]]["uri"]);
+                    if ($this->executeMiddleware($this->routes[$_GET["page"]]["middleware"])){
+                        require_once($this->routes[$_GET["page"]]["uri"]);
+                    }
                 }
             }else{
                 echo $_GET["page"];
@@ -46,4 +51,12 @@ class Router{
             require_once(__DIR__ ."/../../templates/pages/home.php");
         }
     }
+
+    private function executeMiddleware($middleware): bool{
+        if ($middleware != null && is_callable($middleware)){
+            return $middleware();
+        }
+        return true;
+    }
 }
+

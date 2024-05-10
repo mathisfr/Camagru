@@ -13,11 +13,12 @@ function pictureUpload(string $image){
         redirect("makepicture");
     }
     $imageDecode = base64DataToImage($image);
-    $namefile =  time() . '_'. User::getUsername() .'.png';
-    $filePathSave = __DIR__.'/../../uploads/image_' . $namefile;
-    $filePathBdd = 'uploads/image_' . $namefile;
-    file_put_contents($filePathSave, $imageDecode);
+    if (!isImageJPG($imageDecode)){
+        Notification::send("L'image n'est pas au format JPG", NOTIFICATION_TYPE[0]);
+        redirect("makepicture");
+    }
+    $publicPath = saveImage($imageDecode, 75);
     $pictures = new Pictures();
-    $pictures->send(User::getUserId(), $filePathBdd);
-    echo $filePathSave;
+    $pictures->send(User::getUserId(), $publicPath);
+    echo "Image envoyée avec succès";
 }

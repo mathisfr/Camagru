@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    
     $title = "Camagru - Make Picture"; 
 ?>
 <main id="makepicture">
