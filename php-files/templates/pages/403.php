@@ -1,6 +1,6 @@
 <? 
     ob_start(); 
-    $title = "Camagru - 404";
+    $title = "Camagru - 403";
 ?>
 <main>
     <h1>403 - Forbidden</h1>

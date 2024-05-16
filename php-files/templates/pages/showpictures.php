@@ -7,15 +7,20 @@
         <?php
             foreach ($pictures as $picture) {
                 if (file_exists($picture['path'])){
-                    echo '<img class="picture" src="'.$picture['path'].'" alt="picture">';
+                    echo '
+                    <div class="picture-overlay">
+                        <img class="picture" src="'.$picture['path'].'" alt="picture">
+                        <div class="picture-buttons">
+                            <button class="picture-like-button" data-picture-id="'.$picture['id'].'" ><i class="gg-heart"></i></button>
+                            <a class="picture-comment-button" href="commentpicture/'.$picture['id'].'">
+                                Comment
+                            </a>
+                        </div>
+                    </div>
+                    ';
                 }
             }
         ?>
-        <img class="picture" src="https://picsum.photos/400/600" alt="picture">
-        <img class="picture" src="https://placebear.com/400/600" alt="picture">
-        <img class="picture" src="https://placebeard.it/400/600" alt="picture">
-        <img class="picture" src="https://loremflickr.com/400/600" alt="picture">
-        <img class="picture" src="https://dummyimage.com/400x600/fff/aaa" alt="picture">
     </article>
 </main>
 <?

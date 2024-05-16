@@ -42,9 +42,6 @@ export default class Makepicture{
             if (xhr.status == 200) {
                 this.video.pause();
                 alert(xhr.responseText);
-                if(window.confirm("Image uploaded successfully! Do you want to see the image?")){
-                    window.open(dataImage, '_blank');
-                }
                 this.video.play();
             }else{
                 alert('Error');

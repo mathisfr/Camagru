@@ -7,7 +7,9 @@ require_once ("./src/controllers/userUpdate.php");
 require_once ("./src/controllers/userLogout.php");
 require_once ("./src/controllers/userConfirmMail.php");
 require_once ("./src/controllers/pictureUpload.php");
+require_once ("./src/controllers/pictureLike.php");
 require_once ("./src/controllers/showpictures.php");
+require_once ("./src/controllers/pictureShowComment.php");
 require_once ("./src/tools/Notification.php");
 require_once ("./src/tools/Utils.php");
 require_once ("./src/tools/Router.php");
@@ -37,6 +39,7 @@ $router->addRoute("showpictures", "showpictures", 'POST', null, null);
 $router->addRoute("makepicture", "./templates/pages/makepicture.php", null, null, $loggedMiddleware);
 $router->addRoute("profile", "./templates/pages/profile.php", null, null, $loggedMiddleware);
 $router->addRoute("logout", "userLogout", null, null, $loggedMiddleware);
+$router->addRoute("logout", "userLogout", null, null, $loggedMiddleware);
 
 $router->addRoute("userLogin", 'userLogin', 'POST', [
     'username-login',
@@ -57,9 +60,15 @@ $router->addRoute("userUpdate", 'userUpdate', 'POST', [
 ], $loggedMiddleware);
 $router->addRoute("userConfirmMail", 'userConfirmMail', 'GET', [
     'key',
-], $loggedMiddleware);
+], $logoutMiddleware);
 $router->addRoute("pictureUpload", 'pictureUpload', 'POST', [
     'image'
+], $loggedMiddleware);
+$router->addRoute("pictureLike", 'pictureLike', 'POST', [
+    'id'
+], $loggedMiddleware);
+$router->addRoute("commentpicture", 'pictureShowComment', 'GET', [
+    'id'
 ], $loggedMiddleware);
 
 $router->run();

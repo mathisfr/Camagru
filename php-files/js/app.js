@@ -2,6 +2,7 @@ import Home from './Home.js';
 import Header from './Header.js';
 import Makepicture from './Makepicture.js';
 import Notification from './Notification.js';
+import PictureInteraction from './PictureInteraction.js';
 
 /**
  * APP
@@ -28,4 +29,7 @@ function DOMLoaded() {
 
     let notification = new Notification();
     notification.closeNotification();
+
+    let pictureInteraction = new PictureInteraction();
+    pictureInteraction.like();
 }

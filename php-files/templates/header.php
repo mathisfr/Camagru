@@ -7,17 +7,17 @@
     <nav id="nav-menu">
         <ul>
             <?php if(!$isUserLogged): ?>
-                <li><a href="router.php?page=home">Connexion</a></li>
+                <li><a href="/home">Connexion</a></li>
                 <div class="nav-separator"></div>
             <?php endif; ?>
-            <li><a href="showpictures">Show Pictures</a></li>
+            <li><a href="/showpictures">Show Pictures</a></li>
             <?php if ($isUserLogged): ?>
                 <div class="nav-separator"></div>
-                <li><a href="router.php?page=makepicture">Make Pictures</a></li>
+                <li><a href="/makepicture">Make Pictures</a></li>
                 <div class="nav-separator"></div>
-                <li><a href="router.php?page=profile">Profile</a></li>
+                <li><a href="/profile">Profile</a></li>
                 <div class="nav-separator"></div>
-                <li><a href="router.php?page=logout">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
             <?php endif; ?>
         </ul>
     </nav>

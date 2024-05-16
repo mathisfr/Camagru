@@ -19,6 +19,7 @@
             if ($data["emailVerified"] == 0){
                 return false;
             }
+            $userid = $data["id"];
             $email = $data["email"];
             $request->closeCursor();
             return true;

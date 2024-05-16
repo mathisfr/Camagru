@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Generation Time: May 09, 2024 at 02:23 AM
+-- Generation Time: May 16, 2024 at 09:10 AM
 -- Server version: 10.9.8-MariaDB-1:10.9.8+maria~ubu2204
 -- PHP Version: 8.2.8
 
@@ -29,12 +29,12 @@ USE `camagru`;
 -- Table structure for table `keyMail`
 --
 
-DROP TABLE IF EXISTS `keyMail`;
 CREATE TABLE IF NOT EXISTS `keyMail` (
   `user_id` int(11) NOT NULL,
   `user_key` varchar(255) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `user_link_keymail` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -43,20 +43,42 @@ CREATE TABLE IF NOT EXISTS `keyMail` (
 -- Table structure for table `pictures`
 --
 
-DROP TABLE IF EXISTS `pictures`;
 CREATE TABLE IF NOT EXISTS `pictures` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_link_pictures` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `picturesComments`
+--
+
+CREATE TABLE IF NOT EXISTS `picturesComments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `picture_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `pictures`
+-- Table structure for table `picturesLikes`
 --
 
-INSERT INTO `pictures` (`id`, `user_id`, `path`) VALUES
-(4, 0, 'uploads/image_1715221301_aaa.png');
+CREATE TABLE IF NOT EXISTS `picturesLikes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `picture_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `picture_link_picturesLikes` (`picture_id`),
+  KEY `user_link_picturesLikes` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -64,7 +86,6 @@ INSERT INTO `pictures` (`id`, `user_id`, `path`) VALUES
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -73,6 +94,29 @@ CREATE TABLE IF NOT EXISTS `users` (
   `emailVerified` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `keyMail`
+--
+ALTER TABLE `keyMail`
+  ADD CONSTRAINT `user_link_keymail` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `pictures`
+--
+ALTER TABLE `pictures`
+  ADD CONSTRAINT `user_link_pictures` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `picturesLikes`
+--
+ALTER TABLE `picturesLikes`
+  ADD CONSTRAINT `picture_link_picturesLikes` FOREIGN KEY (`picture_id`) REFERENCES `pictures` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_link_picturesLikes` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
