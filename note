@@ -4,4 +4,6 @@ docker rmi $(docker images -a -q)
 docker volume prune
 docker exec -ti <container name> /bin/bash
 
+docker-compose down && docker rm image nginx && docker-compose up -d
+
 https://creatica.app

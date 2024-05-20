@@ -31,5 +31,5 @@ function DOMLoaded() {
     notification.closeNotification();
 
     let pictureInteraction = new PictureInteraction();
-    pictureInteraction.like();
+    pictureInteraction.run();
 }

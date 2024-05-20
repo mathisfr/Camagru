@@ -12,7 +12,7 @@
                         <img class="picture" src="'.$picture['path'].'" alt="picture">
                         <div class="picture-buttons">
                             <button class="picture-like-button" data-picture-id="'.$picture['id'].'" ><i class="gg-heart"></i></button>
-                            <a class="picture-comment-button" href="commentpicture/'.$picture['id'].'">
+                            <a class="picture-comment-button" href="pictureShowComment/'.$picture['id'].'">
                                 Comment
                             </a>
                         </div>

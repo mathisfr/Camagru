@@ -24,7 +24,7 @@ function isImageJPG(string $imageData): bool{
 function saveImage($imageData, $quality): string{
     $namefile =  time() . '_'. User::getUsername() .'.jpg';
     $filePathSave = __DIR__.'/../../uploads/image_' . $namefile;
-    $publicPath = '/uploads/image_' . $namefile;
+    $publicPath = 'uploads/image_' . $namefile;
     $image = imagecreatefromstring($imageData);
     $imageResize = imagescale($image, 400, 600);
     $imageDeco = imagecreatefrompng(__DIR__.'/../../uploads/decos/deco1.png');

@@ -8,8 +8,10 @@ require_once ("./src/controllers/userLogout.php");
 require_once ("./src/controllers/userConfirmMail.php");
 require_once ("./src/controllers/pictureUpload.php");
 require_once ("./src/controllers/pictureLike.php");
-require_once ("./src/controllers/showpictures.php");
+require_once ("./src/controllers/picturesShow.php");
 require_once ("./src/controllers/pictureShowComment.php");
+require_once ("./src/controllers/pictureSendComment.php");
+require_once ("./src/controllers/pictureGetComments.php");
 require_once ("./src/tools/Notification.php");
 require_once ("./src/tools/Utils.php");
 require_once ("./src/tools/Router.php");
@@ -35,7 +37,7 @@ $logoutMiddleware = function () {
 };
 
 $router->addRoute("home", "./templates/pages/home.php", null, null, null);
-$router->addRoute("showpictures", "showpictures", 'POST', null, null);
+$router->addRoute("showpictures", "picturesShow", 'POST', null, null);
 $router->addRoute("makepicture", "./templates/pages/makepicture.php", null, null, $loggedMiddleware);
 $router->addRoute("profile", "./templates/pages/profile.php", null, null, $loggedMiddleware);
 $router->addRoute("logout", "userLogout", null, null, $loggedMiddleware);
@@ -45,12 +47,14 @@ $router->addRoute("userLogin", 'userLogin', 'POST', [
     'username-login',
     'password-login',
 ], $logoutMiddleware);
+
 $router->addRoute("userRegister", 'userRegister', 'POST', [
     'username-register',
     'email-register',
     'password-register',
     'password-confirm',
 ], $logoutMiddleware);
+
 $router->addRoute("userUpdate", 'userUpdate', 'POST', [
     'username',
     'email',
@@ -58,17 +62,30 @@ $router->addRoute("userUpdate", 'userUpdate', 'POST', [
     'password-confirm',
     'delete',
 ], $loggedMiddleware);
+
 $router->addRoute("userConfirmMail", 'userConfirmMail', 'GET', [
     'key',
 ], $logoutMiddleware);
+
 $router->addRoute("pictureUpload", 'pictureUpload', 'POST', [
     'image'
 ], $loggedMiddleware);
+
 $router->addRoute("pictureLike", 'pictureLike', 'POST', [
     'id'
 ], $loggedMiddleware);
-$router->addRoute("commentpicture", 'pictureShowComment', 'GET', [
+
+$router->addRoute("pictureShowComment", 'pictureShowComment', 'GET', [
     'id'
+], $loggedMiddleware);
+
+$router->addRoute("pictureSendComment", 'pictureSendComment', 'POST', [
+    'id',
+    'comment'
+], $loggedMiddleware);
+
+$router->addRoute("pictureGetComments", 'pictureGetComments', 'POST', [
+    'id',
 ], $loggedMiddleware);
 
 $router->run();
