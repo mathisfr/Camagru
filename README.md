@@ -36,3 +36,7 @@ Elle est développée en PHP pour le backend et JavaScript pour le frontend, san
    ```bash
    http://localhost:8000
    ```
+   
+## Structure du Projet
+
+Le projet utilise le modèle de conception MVC (Modèle-Vue-Contrôleur) pour séparer la logique de l'application, la gestion des données et l'affichage.
