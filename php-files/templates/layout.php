@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/styles/icons.css">
     <link rel="stylesheet" href="/styles/showpictures.css">
     <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/passwordrecovery.css">
     <link rel="stylesheet" href="/styles/makepicture.css">
     <link rel="stylesheet" href="/styles/notification.css">
 </head>

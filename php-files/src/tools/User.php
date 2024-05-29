@@ -44,9 +44,15 @@ class User{
     }
     public static function secureUserInfo(?string &$username, ?string &$email, ?string &$password): bool
     {
-        $username = strip_tags($username);
-        $email = strip_tags($email);
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        if (!empty($username)){
+            $username = strip_tags($username);
+        }
+        if (!empty($email)){
+            $email = strip_tags($email);
+        }
+        if (!empty($password)){
+            $password = password_hash($password, PASSWORD_DEFAULT);
+        }
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             return false;
         }

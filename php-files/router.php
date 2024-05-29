@@ -12,6 +12,7 @@ require_once ("./src/controllers/picturesShow.php");
 require_once ("./src/controllers/pictureShowComment.php");
 require_once ("./src/controllers/pictureSendComment.php");
 require_once ("./src/controllers/pictureGetComments.php");
+require_once ("./src/controllers/userResetPassword.php");
 require_once ("./src/tools/Notification.php");
 require_once ("./src/tools/Utils.php");
 require_once ("./src/tools/Router.php");
@@ -41,7 +42,7 @@ $router->addRoute("showpictures", "picturesShow", 'POST', null, null);
 $router->addRoute("makepicture", "./templates/pages/makepicture.php", null, null, $loggedMiddleware);
 $router->addRoute("profile", "./templates/pages/profile.php", null, null, $loggedMiddleware);
 $router->addRoute("logout", "userLogout", null, null, $loggedMiddleware);
-$router->addRoute("logout", "userLogout", null, null, $loggedMiddleware);
+$router->addRoute("passwordrecovery", "./templates/pages/passwordrecovery.php", null, null, $logoutMiddleware);
 
 $router->addRoute("userLogin", 'userLogin', 'POST', [
     'username-login',
@@ -66,6 +67,15 @@ $router->addRoute("userUpdate", 'userUpdate', 'POST', [
 $router->addRoute("userConfirmMail", 'userConfirmMail', 'GET', [
     'key',
 ], $logoutMiddleware);
+
+$router->addRoute("userResetPassword", 'userResetPassword', 'POST', [
+    'email',
+], $logoutMiddleware);
+
+$router->addRoute("userConfirmResetPassword", 'userConfirmResetPassword', 'GET', [
+    'key',
+], $logoutMiddleware);
+
 
 $router->addRoute("pictureUpload", 'pictureUpload', 'POST', [
     'image'

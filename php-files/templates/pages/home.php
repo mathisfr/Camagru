@@ -11,6 +11,9 @@
                 <input type="password" name="password-login" id="password-login" placeholder="Mot de passe">
                 <input class="submit-button" type="submit" value="Se connecter">
             </form>
+            <form action="router.php?page=passwordrecovery" method="post">
+                <input class="submit-button" name="reset-password" type="submit" value="Mot de passe oublie ?">
+            </form>
         </section>
         <section id="home-register">
             <h1>Créer un compte</h1>
