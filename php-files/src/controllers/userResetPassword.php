@@ -15,7 +15,7 @@ function userResetPassword(string $email)
     }
     $users = new Users();
     $user = $users->getUserByEmail($email);
-    if(empty($user)){
+    if(empty($user) || $user["emailVerified"] == 0){
         redirect("home");
     }
 

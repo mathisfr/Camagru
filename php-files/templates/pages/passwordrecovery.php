@@ -7,7 +7,7 @@
         <h1>Mot de passe oublie</h1>
         <form action="router.php?page=userResetPassword" method="post">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="name@domain.com">
+            <input type="email" name="email" id="email" value="">
             <input class="submit-button" name="submit" type="submit" value="Send mail">
         </form>
     </article>

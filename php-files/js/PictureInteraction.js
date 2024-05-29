@@ -5,6 +5,7 @@
  */
 export default class PictureInteraction{
     constructor(){
+        this.buttonsUnLike = document.querySelectorAll(".picture-unlike-button");
         this.buttonsLike = document.querySelectorAll(".picture-like-button");
         this.buttonComment = document.getElementById("picture-sendComment-button");
         this.textComment = document.getElementById("picture-textComment-input");
@@ -12,6 +13,7 @@ export default class PictureInteraction{
     }
     run(){
         this.like();
+        this.unlike();
         this.comment();
         this.getCommentAutomatic();
     }
@@ -22,10 +24,22 @@ export default class PictureInteraction{
             button.addEventListener("click", (event)=>{
                 event.preventDefault();
                 const pictureId = button.getAttribute("data-picture-id");
-                this.sendLike(pictureId);
+                this.setLike(pictureId, button);
             });
         });
     }
+
+    unlike(){
+        if (this.buttonsUnLike == null) return;
+        this.buttonsUnLike.forEach((button)=>{
+            button.addEventListener("click", (event)=>{
+                event.preventDefault();
+                const pictureId = button.getAttribute("data-picture-id");
+                this.setLike(pictureId, button);
+            });
+        });
+    }
+
     comment(){
         if (this.buttonComment == null) return;
         this.buttonComment.addEventListener("click", (event)=>{
@@ -45,14 +59,22 @@ export default class PictureInteraction{
         this.getComment(pictureId);
     }
 
-    sendLike(id){
+    setLike(id, button){
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "router.php?page=pictureLike", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = () => {
             if (xhr.readyState != 4 ) return;
             if (xhr.status == 200) {
-                alert(xhr.responseText);
+                if (button.classList.contains("picture-like-button")){
+                    button.classList.remove("picture-like-button");
+                    button.classList.add("picture-unlike-button");
+                    button.textContent = "UnLike";
+                }else {
+                    button.classList.remove("picture-unlike-button");
+                    button.classList.add("picture-like-button");
+                    button.textContent = "Like";
+                }
             }
         };
         xhr.send("id=" + id);

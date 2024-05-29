@@ -10,6 +10,16 @@ class Pictures extends DatabaseConnection{
         return $pictures;
     }
 
+    public function isLikedByUser(int $userId, int $pictureId): bool{
+        $request = $this->getConnection()->prepare("SELECT * FROM `picturesLikes` WHERE `picture_id`=:pictureId AND `user_id`=:userId");
+        $request->bindParam(":pictureId", $pictureId, PDO::PARAM_INT);
+        $request->bindParam(":userId", $userId, PDO::PARAM_INT);
+        $request->execute();
+        $isLiked = $request->rowCount() == 0 ? false : true;
+        $request->closeCursor();
+        return $isLiked;
+    }
+    
     public function receiveById($id){
         $request = $this->getConnection()->prepare("SELECT * FROM `pictures` WHERE `id`=:pictureId");
         $request->bindParam(":pictureId", $id, PDO::PARAM_INT);

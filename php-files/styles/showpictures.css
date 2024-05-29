@@ -33,7 +33,7 @@
     flex-wrap: nowrap;
 }
 
-.picture-like-button, .picture-comment-button{
+.picture-like-button, .picture-unlike-button, .picture-comment-button{
     background-color: var(--grey);
     outline: none;
     border: none;
@@ -47,15 +47,21 @@
     box-sizing: border-box;
     border-bottom: 2px solid var(--grey-shadow);
     text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
 }
 
 .picture-like-button{
     left: 0;
-    color: rgb(255, 90, 29);
+    color: rgb(255, 101, 70);
+    background-color: var(--grey);
 }
 
-.picture-like-button:hover i{
-    box-shadow: 0 0 50px rgb(255, 90, 29);
+.picture-unlike-button{
+    left: 0;
+    color: var(--grey);
+    background-color: rgb(255, 101, 70);
+    border-bottom: 2px solid rgb(171, 46, 21);
 }
 
 .picture-comment-button{
