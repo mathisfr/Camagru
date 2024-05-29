@@ -21,10 +21,14 @@ html, body{
     margin: 0;
 }
 
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body{
     display: flex;
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+
     flex-direction: column;
 }
 

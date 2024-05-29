@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once (__DIR__ . "/../models/pictures.php");
 require_once(__DIR__ . "/../tools/Notification.php");
+require_once(__DIR__ . "/pictureGetComments.php");
 require_once(__DIR__ . "/../tools/Utils.php");
 require_once(__DIR__ . "/../tools/User.php");
 function pictureShowComment($id){

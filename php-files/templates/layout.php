@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/styles/passwordrecovery.css">
     <link rel="stylesheet" href="/styles/makepicture.css">
     <link rel="stylesheet" href="/styles/notification.css">
+    <link rel="stylesheet" href="/styles/commentpicture.css">
 </head>
 <body>
     <?php require_once('header.php');?>

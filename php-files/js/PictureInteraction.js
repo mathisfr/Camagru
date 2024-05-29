@@ -13,6 +13,7 @@ export default class PictureInteraction{
     run(){
         this.like();
         this.comment();
+        this.getCommentAutomatic();
     }
 
     like(){
@@ -26,7 +27,6 @@ export default class PictureInteraction{
         });
     }
     comment(){
-        console.log(this.buttonComment);
         if (this.buttonComment == null) return;
         this.buttonComment.addEventListener("click", (event)=>{
             event.preventDefault();
@@ -37,6 +37,12 @@ export default class PictureInteraction{
                 this.textComment.value = "";
             }
         });
+    }
+
+    getCommentAutomatic(){
+        if (this.buttonComment == null) return;
+        const pictureId = this.buttonComment.getAttribute("data-picture-id");
+        this.getComment(pictureId);
     }
 
     sendLike(id){
@@ -69,20 +75,21 @@ export default class PictureInteraction{
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "router.php?page=pictureGetComments", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = () => {
             xhr.getResponseHeader('Content-Type', 'application/json');
             if (xhr.readyState != 4 ) return;
             if (xhr.status == 200) {
-                $data = JSON.parse(xhr.responseText);
+                var data = JSON.parse(xhr.responseText);
                 if (this.comments == null) return;
                 this.comments.innerHtml = "";
                 let commentList = [];
-                for (const [key, value] of Object.entries(object1)) {
-                    commentList += "<li>" + value + "</li>";
+                for (var i = data.length; i > 0; i--) {
+                    if (data[i] == null) continue;
+                    let user_name = data[i].username;
+                    let comment = data[i].comment;
+                    commentList += '<li><p class="commentpicture-username">' + user_name + '</p><p>' + comment + '</p></li>';
                 }
-                Object.values(data).forEach(({ id, name }) => {
-                    console.log(id, name)
-                });
+                this.comments.innerHTML = commentList;
             }
         };
         xhr.send("id=" + id);

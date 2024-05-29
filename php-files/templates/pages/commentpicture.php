@@ -3,15 +3,13 @@
     $title = "Camagru - Comment Picture"; 
 ?>
 <main id="commentpicture">
-    <article>
     <?php echo '<img src="/'.$picture["path"].'" alt="picture">' ?>
     <ul id="picture-comments">
     </ul>
     <div>
-        <input id="picture-textComment-input" type="text" name="" id="">
-        <button id="picture-sendComment-button" data-picture-id="<?php echo $picture["id"] ?>">Comment</button>
+        <textarea id="picture-textComment-input" name="text" rows="2" cols="50" maxlength="255" required spellcheck="true"></textarea>
+        <button id="picture-sendComment-button" class="submit-button-comment" data-picture-id="<?php echo $picture["id"] ?>">Comment</button>
     </div>
-    </article>
 </main>
 <?
     $content = ob_get_clean();
