@@ -76,7 +76,7 @@ export default class Makepicture{
     };
     sendImage(dataImage){
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/router.php?page=pictureUpload', true);
+        xhr.open('POST', 'http://localhost:8080/router.php?page=pictureUploadAjax', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = ()=> {
             if (xhr.readyState != 4 ) return;
@@ -88,6 +88,6 @@ export default class Makepicture{
                 alert('Error');
             }
         };
-        xhr.send('image=' + dataImage);
+        xhr.send('image=' + dataImage + '&deco=' + this.currentDecoId);
     };
 }

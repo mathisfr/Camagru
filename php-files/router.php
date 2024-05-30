@@ -83,8 +83,9 @@ $router->addRoute("userConfirmResetPassword", 'userConfirmResetPassword', 'GET',
 ], $logoutMiddleware);
 
 
-$router->addRoute("pictureUpload", 'pictureUpload', 'POST', [
-    'image'
+$router->addRoute("pictureUploadAjax", 'pictureUploadAjax', 'POST', [
+    'image',
+    'deco'
 ], $loggedMiddleware);
 
 $router->addRoute("pictureLikeAjax", 'pictureLikeAjax', 'POST', [

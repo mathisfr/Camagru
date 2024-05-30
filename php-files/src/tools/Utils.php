@@ -21,13 +21,19 @@ function isImageJPG(string $imageData): bool{
     return true;
 }
 
-function saveImage($imageData, $quality): string{
+function saveImage($imageData, int $quality, int $decoId): string{
+    if ($decoId > 2){
+        $decoId = 1;
+    }else if ($decoId < 1){
+        $decoId = 2;
+    }
+
     $namefile =  time() . '_'. User::getUsername() .'.jpg';
     $filePathSave = __DIR__.'/../../uploads/image_' . $namefile;
     $publicPath = 'uploads/image_' . $namefile;
     $image = imagecreatefromstring($imageData);
     $imageResize = imagescale($image, 400, 600);
-    $imageDeco = imagecreatefrompng(__DIR__.'/../../uploads/decos/deco2.png');
+    $imageDeco = imagecreatefrompng(__DIR__.'/../../uploads/decos/deco'.$decoId .'.png');
     $imageDecoResize = imagescale($imageDeco, 400, 600);
     imagecopy($imageResize, $imageDecoResize, 0, 0, 0, 0, 400, 600);
     imagejpeg($imageResize, $filePathSave, $quality);
