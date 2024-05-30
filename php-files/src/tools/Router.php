@@ -22,7 +22,10 @@ class Router{
                     $type = $this->routes[$_GET["page"]]["type"];
                     if (is_array($params)){
                         $sendParams = [];
-                        foreach($params as $param){
+                        $funct = new ReflectionFunction($this->routes[$_GET["page"]]["uri"]);
+                        $numberOfParams = $funct->getNumberOfParameters();
+                        for ($i = 0; $i < $numberOfParams; $i++){
+                            $param = $params[$i];
                             if ($type == "POST"){
                                 $sendParams[] = $_POST[$param] ?? null;
                             }else{

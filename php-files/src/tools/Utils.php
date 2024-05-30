@@ -1,7 +1,7 @@
 <?php
 
 function redirect(string $page){
-    header("Location: $page");
+    header("Location: $page", true, 303 );
     exit();
 }
 

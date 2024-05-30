@@ -7,8 +7,9 @@ require_once(__DIR__."/../models/pictures.php");
 require_once(__DIR__ . "/../tools/Notification.php");
 require_once(__DIR__ . "/../tools/User.php");
 require_once(__DIR__ . "/../tools/Utils.php");
-function pictureLike($id){
+function pictureLikeAjax($id){
     $pictures = new Pictures();
-    $isLiked = $pictures->like(User::getUserId(), intval($id)) ? "Image likée" : "Image unlikée";
-    echo $isLiked;
+    $pictures->like(User::getUserId(), intval($id)) ? "Image likée" : "Image unlikée";
+    $likes = $pictures->numberOfLikes(intval($id));
+    echo $likes;
 }

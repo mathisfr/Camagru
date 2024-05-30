@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter('false');
 session_start();
 
 require_once ("./src/controllers/userLogin.php");
@@ -31,18 +33,22 @@ $loggedMiddleware = function () {
 $logoutMiddleware = function () {
     if (User::isLogged()) {
         Notification::send("Vous ne devez pas être connecté pour accéder à cette page", NOTIFICATION_TYPE[0]);
-        redirect("home");
+        redirect("showpictures");
         return false;
     }
     return true;
 };
 
-$router->addRoute("home", "./templates/pages/home.php", null, null, null);
-$router->addRoute("showpictures", "picturesShow", 'POST', null, null);
+$router->addRoute("home", "./templates/pages/home.php", null, null, $logoutMiddleware);
 $router->addRoute("makepicture", "./templates/pages/makepicture.php", null, null, $loggedMiddleware);
 $router->addRoute("profile", "./templates/pages/profile.php", null, null, $loggedMiddleware);
 $router->addRoute("logout", "userLogout", null, null, $loggedMiddleware);
 $router->addRoute("passwordrecovery", "./templates/pages/passwordrecovery.php", null, null, $logoutMiddleware);
+
+$router->addRoute("showpictures", "picturesShow", 'POST', [
+    'next',
+    'previous'
+], null);
 
 $router->addRoute("userLogin", 'userLogin', 'POST', [
     'username-login',
@@ -81,7 +87,7 @@ $router->addRoute("pictureUpload", 'pictureUpload', 'POST', [
     'image'
 ], $loggedMiddleware);
 
-$router->addRoute("pictureLike", 'pictureLike', 'POST', [
+$router->addRoute("pictureLikeAjax", 'pictureLikeAjax', 'POST', [
     'id'
 ], $loggedMiddleware);
 
@@ -89,12 +95,12 @@ $router->addRoute("pictureShowComment", 'pictureShowComment', 'GET', [
     'id'
 ], $loggedMiddleware);
 
-$router->addRoute("pictureSendComment", 'pictureSendComment', 'POST', [
+$router->addRoute("pictureSendCommentAjax", 'pictureSendCommentAjax', 'POST', [
     'id',
     'comment'
 ], $loggedMiddleware);
 
-$router->addRoute("pictureGetComments", 'pictureGetComments', 'POST', [
+$router->addRoute("pictureGetCommentsAjax", 'pictureGetCommentsAjax', 'POST', [
     'id',
 ], $loggedMiddleware);
 

@@ -10,6 +10,23 @@ class Pictures extends DatabaseConnection{
         return $pictures;
     }
 
+    public function numberOfImages(){
+        $request = $this->getConnection()->prepare("SELECT id FROM `pictures`");
+        $request->execute();
+        $pictures = $request->rowCount();
+        $request->closeCursor();
+        return $pictures;
+    }   
+
+    public function receiveLimit(int $offset){
+        $request = $this->getConnection()->prepare("SELECT * FROM `pictures` ORDER BY `id` DESC LIMIT :offset, 5");
+        $request->bindParam(":offset", $offset, PDO::PARAM_INT);
+        $request->execute();
+        $pictures = $request->fetchAll();
+        $request->closeCursor();
+        return $pictures;
+    }
+
     public function isLikedByUser(int $userId, int $pictureId): bool{
         $request = $this->getConnection()->prepare("SELECT * FROM `picturesLikes` WHERE `picture_id`=:pictureId AND `user_id`=:userId");
         $request->bindParam(":pictureId", $pictureId, PDO::PARAM_INT);
@@ -18,6 +35,15 @@ class Pictures extends DatabaseConnection{
         $isLiked = $request->rowCount() == 0 ? false : true;
         $request->closeCursor();
         return $isLiked;
+    }
+
+    public function numberOfLikes(int $pictureId): int{
+        $request = $this->getConnection()->prepare("SELECT id FROM `picturesLikes` WHERE `picture_id`=:pictureId");
+        $request->bindParam(":pictureId", $pictureId, PDO::PARAM_INT);
+        $request->execute();
+        $likes = $request->rowCount();
+        $request->closeCursor();
+        return $likes;
     }
     
     public function receiveById($id){

@@ -61,7 +61,7 @@ export default class PictureInteraction{
 
     setLike(id, button){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "router.php?page=pictureLike", true);
+        xhr.open("POST", "router.php?page=pictureLikeAjax", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = () => {
             if (xhr.readyState != 4 ) return;
@@ -69,12 +69,11 @@ export default class PictureInteraction{
                 if (button.classList.contains("picture-like-button")){
                     button.classList.remove("picture-like-button");
                     button.classList.add("picture-unlike-button");
-                    button.textContent = "UnLike";
                 }else {
                     button.classList.remove("picture-unlike-button");
                     button.classList.add("picture-like-button");
-                    button.textContent = "Like";
                 }
+                button.textContent = "Like " + xhr.responseText;
             }
         };
         xhr.send("id=" + id);
@@ -82,7 +81,7 @@ export default class PictureInteraction{
 
     sendComment(id, comment){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "router.php?page=pictureSendComment", true);
+        xhr.open("POST", "router.php?page=pictureSendCommentAjax", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = () => {
             if (xhr.readyState != 4 ) return;
@@ -95,7 +94,7 @@ export default class PictureInteraction{
 
     getComment(id){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "router.php?page=pictureGetComments", true);
+        xhr.open("POST", "router.php?page=pictureGetCommentsAjax", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = () => {
             xhr.getResponseHeader('Content-Type', 'application/json');

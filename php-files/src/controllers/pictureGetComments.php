@@ -8,7 +8,7 @@ require_once (__DIR__ . "/../models/users.php");
 require_once(__DIR__ . "/../tools/Notification.php");
 require_once(__DIR__ . "/../tools/Utils.php");
 require_once(__DIR__ . "/../tools/User.php");
-function pictureGetComments($id){
+function pictureGetCommentsAjax($id){
     $picturesSQL = new Pictures();
     $users = new Users();
     $comments[] = null;

@@ -55,6 +55,7 @@
     left: 0;
     color: rgb(255, 101, 70);
     background-color: var(--grey);
+    transition-duration: 0.2s;
 }
 
 .picture-unlike-button{
@@ -62,12 +63,47 @@
     color: var(--grey);
     background-color: rgb(255, 101, 70);
     border-bottom: 2px solid rgb(171, 46, 21);
+    transition-duration: 0.2s;
 }
 
 .picture-comment-button{
     right: 0;
     color: var(--black);
     text-align: center;
+    transition-duration: 0.2s;
+}
+
+.picture-comment-button:hover, .picture-like-button:hover{
+    background-color: var(--grey-shadow);;
+    transition-duration: 0.2s;
+}
+
+#showpictures-paging{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#showpictures-previous, #showpictures-next{
+    flex: 1;
+    padding: 2vw;
+    border: none;
+    outline: none;
+    background-color: var(--yellow);
+    color: white;
+    background-color: rgb(255, 101, 70);
+    cursor: pointer;
+    border-bottom: 2px solid rgb(171, 46, 21);
+    font-size: 1em;
+    font-weight: bold;
+    transition-duration: 0.2s;
+}
+
+#showpictures-previous:hover, #showpictures-next:hover, .picture-unlike-button:hover{
+    transition-duration: 0.2s;
+    background-color: rgb(209, 83, 58);
 }
 
 
