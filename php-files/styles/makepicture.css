@@ -45,16 +45,15 @@
     position: absolute;
     border: none;
     outline: none;
+    background-color: transparent;
 }
 
 #makepicture-previous-preview{
     left:0;
-    background-color: rgba(0, 255, 255, 0.119);
 }
 
 #makepicture-next-preview{
     left: 50%;
-    background-color: rgba(255, 8, 0, 0.158);
 }
 
 #makepicture-button{

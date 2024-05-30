@@ -10,7 +10,7 @@ export default class Makepicture{
         this.decoPreview = document.getElementById('makepicture-preview-img');
         this.nextPreview = document.getElementById('makepicture-next-preview');
         this.prevPreview = document.getElementById('makepicture-previous-preview');
-        this.nbrDecoPreview = 2;
+        this.nbrDecoPreview = 6;
         this.currentDecoId = 1;
     }
 

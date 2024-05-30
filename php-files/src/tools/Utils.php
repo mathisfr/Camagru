@@ -22,10 +22,11 @@ function isImageJPG(string $imageData): bool{
 }
 
 function saveImage($imageData, int $quality, int $decoId): string{
-    if ($decoId > 2){
+    $decoMax = 6;
+    if ($decoId > $decoMax ){
         $decoId = 1;
     }else if ($decoId < 1){
-        $decoId = 2;
+        $decoId = $decoMax;
     }
 
     $namefile =  time() . '_'. User::getUsername() .'.jpg';

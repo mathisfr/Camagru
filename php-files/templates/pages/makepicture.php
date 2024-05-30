@@ -10,10 +10,8 @@
             <i class="gg-live-photo"></i>
         </button>
         <button id="makepicture-previous-preview">
-            Previous
         </button>
         <button id="makepicture-next-preview">
-            Next
         </button>
     </div>
 </main>
