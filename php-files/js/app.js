@@ -25,7 +25,7 @@ function DOMLoaded() {
     header.hamburgerMenu();
 
     let makepicture = new Makepicture();
-    makepicture.takePicture();
+    makepicture.run();
 
     let notification = new Notification();
     notification.closeNotification();

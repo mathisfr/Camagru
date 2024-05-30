@@ -21,11 +21,11 @@
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
-        <form action="/showpictures" method="POST" id="showpictures-paging">
-            <input type="submit" name="previous" id="showpictures-previous" value="Previous"/>
-            <input type="submit" name="next" id="showpictures-next" value="Next"/>
-        </form>
     </article>
+    <form action="/showpictures" method="POST" id="showpictures-paging">
+        <input type="submit" name="previous" id="showpictures-previous" value="Previous"/>
+        <input type="submit" name="next" id="showpictures-next" value="Next"/>
+    </form>
 </main>
 <?
     $content = ob_get_clean();

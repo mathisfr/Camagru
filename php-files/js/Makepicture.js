@@ -5,7 +5,48 @@ export default class Makepicture{
     constructor(){
         this.buttonTakePicture = document.getElementById('makepicture-button');
         this.video = document.getElementById('makepicture-video');
+        this.cameraSection = document.getElementById('makepicture-camera');
+
+        this.decoPreview = document.getElementById('makepicture-preview-img');
+        this.nextPreview = document.getElementById('makepicture-next-preview');
+        this.prevPreview = document.getElementById('makepicture-previous-preview');
+        this.nbrDecoPreview = 2;
+        this.currentDecoId = 1;
     }
+
+    run(){
+        this.takePicture();
+        this.preview();
+    }
+
+    preview(){
+        if (this.decoPreview == null || this.nextPreview == null || this.prevPreview == null) return;
+        this.nextPreview.addEventListener('click', ()=>{
+            this.currentDecoId = this.decoPreview.getAttribute('data-deco-id');
+            this.setPreviewDeco(true);
+        });
+        this.prevPreview.addEventListener('click', ()=>{
+            this.currentDecoId = this.decoPreview.getAttribute('data-deco-id');
+            this.setPreviewDeco(false);
+        });
+    }
+
+    setPreviewDeco(next){
+        if (next === true){
+            this.currentDecoId++;
+            if (this.currentDecoId > this.nbrDecoPreview){
+                this.currentDecoId = 1;
+            }
+        }else{
+            this.currentDecoId--;
+            if (this.currentDecoId < 1){
+                this.currentDecoId = this.nbrDecoPreview;
+            }
+        }
+        this.decoPreview.setAttribute('data-deco-id', this.currentDecoId);
+        this.decoPreview.src = './uploads/decos/deco' + this.currentDecoId + '.png';
+    }
+
     takePicture(){
         if (this.video == null) return;
         navigator.mediaDevices.getUserMedia({video:true, audio:false})
