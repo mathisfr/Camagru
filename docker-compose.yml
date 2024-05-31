@@ -4,6 +4,7 @@ version: '3.8'
 services:
     # PHP Service
     php:
+        restart: always
         build:
             dockerfile: php-dockerfile
         volumes:
@@ -14,6 +15,7 @@ services:
     # Nginx Service
     nginx:
         image: nginx:latest
+        restart: always
         ports:
             - 8080:8080
         links:
@@ -27,22 +29,20 @@ services:
     # MariaDB Service
     mariadb:
         image: mariadb:10.9
+        restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: camagru
         volumes:
-            - mysqldata:/var/lib/mysql
-            - ./database/base.sql:/docker-entrypoint-initdb.d/base.sql
+            - './database/base.sql:/docker-entrypoint-initdb.d/base.sql'
 
     # phpMyAdmin Service
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
+        restart: always
         ports:
             - 8081:80
         environment:
             PMA_HOST: mariadb
         depends_on:
             - mariadb
-
-# Volumes
-volumes:
-  mysqldata:

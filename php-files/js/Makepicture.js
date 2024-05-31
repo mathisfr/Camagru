@@ -12,11 +12,17 @@ export default class Makepicture{
         this.prevPreview = document.getElementById('makepicture-previous-preview');
         this.nbrDecoPreview = 6;
         this.currentDecoId = 1;
+
+        this.pictureImport = document.getElementById('picture-import');
+        this.pictureImagePreview = document.getElementById('picture-image-preview');
+        this.pictureUpload = document.getElementById('picture-upload');
     }
 
     run(){
         this.takePicture();
         this.preview();
+        this.importPicture();
+        this.uploadPicture();
     }
 
     preview(){
@@ -90,4 +96,30 @@ export default class Makepicture{
         };
         xhr.send('image=' + dataImage + '&deco=' + this.currentDecoId);
     };
+
+    importPicture(){
+        if (this.pictureImport == null || this.pictureImagePreview == null) return;
+        this.pictureImport.addEventListener('change', ()=>{
+            console.log('change');
+            const file = this.pictureImport.files[0];
+            this.pictureImagePreview.src = URL.createObjectURL(file);
+            this.pictureImagePreview.addEventListener('load', ()=>{
+                URL.revokeObjectURL(this.src);
+            });
+        }, false);
+    }
+
+    uploadPicture(){
+        if(this.pictureImagePreview == null || this.pictureUpload == null || this.currentDecoId == null) return;
+        this.pictureUpload.addEventListener('click', ()=>{
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            canvas.height = this.pictureImagePreview.clientHeight;
+            canvas.width = this.pictureImagePreview.clientWidth;
+            var aspectRatio = canvas.width  / canvas.height ;
+            context.drawImage(this.pictureImagePreview, (this.pictureImagePreview.naturalWidth / 2) * aspectRatio, 0, this.pictureImagePreview.naturalWidth * aspectRatio, this.pictureImagePreview.naturalHeight, 0, 0, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL('image/jpeg');
+            this.sendImage(dataURL);
+        });
+    }
 }

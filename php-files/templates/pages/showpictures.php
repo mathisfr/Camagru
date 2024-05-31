@@ -3,6 +3,11 @@
     $title = "Camagru - Show Pictures";
 ?>
 <main id="showpictures">
+    <?php if ($_SESSION['nopictures']): ?>
+    <article id="no-pictures">
+        <p>No pictures to show</p>
+    </article>
+    <?php else: ?>
     <article id="pictures">
         <?php foreach ($pictures as $picture): ?>
             <?php if (file_exists($picture['path'])): ?>
@@ -26,6 +31,7 @@
         <input type="submit" name="previous" id="showpictures-previous" value="Previous"/>
         <input type="submit" name="next" id="showpictures-next" value="Next"/>
     </form>
+    <?php endif; ?>
 </main>
 <?
     $content = ob_get_clean();

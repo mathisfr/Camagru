@@ -26,6 +26,12 @@ function getPicturesFromOffset(){
     $picturesSQL = new Pictures();
     $maxImages = $picturesSQL->numberOfImages();
     $maxPages = ceil($maxImages / 5)- 1;
+    if ($maxPages < 0){
+        $_SESSION['nopictures'] = true;
+        $maxPages = 0;
+    }else{
+        $_SESSION['nopictures'] = false;
+    }
     if ($_SESSION['paging'] < 0){
         $_SESSION['paging'] = $maxPages;
     }else if ($_SESSION['paging'] > $maxPages){
