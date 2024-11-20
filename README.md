@@ -1,5 +1,4 @@
-> L'application est en cours de développement.  
-> Elle n'est donc pas encore finalisée.
+> Le projet n'est pas fini et je ne sais pas si je le reprendrai. 
 
 # Application de Publication de Photos
 
