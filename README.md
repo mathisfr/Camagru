@@ -2,8 +2,6 @@
 
 # Application de Publication de Photos
 
-# /!\ WORK IN PROGRESS /!\
-
 Cette application permet aux utilisateurs de poster des photos.  
 Elle est développée en PHP pour le backend et JavaScript pour le frontend, sans utiliser de frameworks.
 
